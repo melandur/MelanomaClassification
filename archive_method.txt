@@ -1,0 +1,51 @@
+
+# def imagesToTorchTensor(images, labels, numOfImages=-1):
+#     if numOfImages == -1:
+#         outImage = torch.FloatTensor(len(images), images[0].height * images[0].width * (images[0].layers )).zero_()
+#         outLabel = torch.IntTensor(len(images)).zero_()
+#
+#     elif numOfImages > 0:
+#         outImage = torch.FloatTensor(numOfImages, images[0].height * images[0].width * (images[0].layers)).zero_()
+#         outLabel = torch.IntTensor(numOfImages).zero_()
+#
+#     else:
+#         print('*** Error, the chosen number of images is invalid ***')
+#
+#     return outImage, outLabel
+
+
+# Shuffle the images
+# def imagesShuffle(outImage, outLabel, images, labels):
+#     indexes = np.arange(len(images))
+#     indexes = np.random.choice(indexes, size=len(outImage), replace=False)
+#     np.random.shuffle(indexes)
+#     i = 0
+#
+#     for ind in indexes:
+#         outImage[i, :] = torch.from_numpy(buildDataVectorOfImg(images[ind]))
+#         outLabel[i] = labels[ind]
+#         i += 1
+#
+#     print('Image shuffle done')
+#
+#     return outImage, outLabel
+
+
+# # Split the images and labels in train and test sets
+# def imagesSplit(outImage, outLabel, numOfImages, train_size):
+#     split = int(numOfImages * train_size)
+#     X_train = outImage[:split]
+#     X_test = outImage[split:]
+#     y_train = outLabel[:split]
+#     y_test = outLabel[split:]
+#     print('Split of train and test set done')
+#
+#     return X_train, X_test, y_train, y_test
+#
+#
+# def buildDataVectorOfImg(image):
+#     img = np.zeros((image.height, image.width, image.layers + 1), dtype=np.float)
+#     img[:, :, 0:3] = np.array(image.getdata()).reshape(image.size[0], image.size[1], 3).astype(float)
+#     img[:, :, 3] = np.sqrt(np.square(img[:, :, 0]) + np.square(img[:, :, 1]) + np.square(img[:, :, 2]))
+#
+#     return np.reshape(img, (-1))
